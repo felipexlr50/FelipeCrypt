@@ -9,6 +9,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:background="@color/colorPrimaryDark"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.felipexlr.felipecrypt.MainActivity"
     tools:showIn="@layout/activity_main">
@@ -17,7 +20,8 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryDark">
 
         <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
@@ -35,7 +39,10 @@
             android:inputType="textPassword"
             android:ems="10"
             android:id="@+id/edtKey"
-            android:hint="Chave" />
+            android:hint="Chave"
+            android:textColor="?attr/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textColorSecondary="@color/colorPrimary"/>
 
         <EditText
             android:layout_width="match_parent"
@@ -48,8 +55,8 @@
             android:scrollbars="vertical"
             android:textIsSelectable="true"
             android:hint="Texto"
-            
-            />
+            android:textColor="?attr/colorPrimary"
+            android:textColorHint="@color/colorPrimary"/>
     </LinearLayout>
 
 </RelativeLayout>

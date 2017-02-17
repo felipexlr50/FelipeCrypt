@@ -48,10 +48,10 @@
         fab:menu_animationDelayPerItem="55"
         fab:menu_backgroundColor="@android:color/transparent"
         fab:menu_buttonSpacing="0dp"
-        fab:menu_colorNormal="#da3c2f"
-        fab:menu_colorPressed="#dc4b3f"
+        fab:menu_colorNormal="@color/colorAccent"
+        fab:menu_colorPressed="@color/colorPrimaryDark"
         fab:menu_colorRipple="#99d4d4d4"
-        fab:menu_fab_label="Floating Action Menu"
+        fab:menu_fab_label="Menu"
         fab:menu_fab_size="normal"
         fab:menu_icon="@drawable/fab_add"
         fab:menu_labels_colorNormal="#333"
@@ -72,7 +72,7 @@
         fab:menu_shadowRadius="4dp"
         fab:menu_shadowXOffset="1dp"
         fab:menu_shadowYOffset="4dp"
-        fab:menu_showShadow="true">
+        fab:menu_showShadow="false">
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/nfab1"
@@ -80,7 +80,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_lock"
             fab:fab_label="Codificar"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimary"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/nfab2"
@@ -88,7 +89,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_unlock"
             fab:fab_label="Decodificar"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimary"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/nfab3"
@@ -96,7 +98,8 @@
             android:layout_height="wrap_content"
             android:src="@drawable/ic_new"
             fab:fab_label="Limpar"
-            fab:fab_size="mini" />
+            fab:fab_size="mini"
+            app:fab_colorNormal="@color/colorPrimary"/>
     </com.github.clans.fab.FloatingActionMenu>
 
 

@@ -1,8 +1,11 @@
 package com.example.felipexlr.felipecrypt;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         menu = (FloatingActionMenu) findViewById(R.id.menu2);
         edtKey = (EditText) findViewById(R.id.edtKey);
@@ -66,6 +71,15 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        if(id==R.id.action_copy){
+
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("label", edtTexto.getText().toString());
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(this, "Menssagem copiada para área de transferência\n", Toast.LENGTH_SHORT).show();
             return true;
         }
 
