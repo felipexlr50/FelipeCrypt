@@ -68,11 +68,7 @@
         fab:menu_labels_textColor="#f2f1f1"
         fab:menu_labels_textSize="15sp"
         fab:menu_openDirection="up"
-        fab:menu_shadowColor="#66aff198"
-        fab:menu_shadowRadius="4dp"
-        fab:menu_shadowXOffset="1dp"
-        fab:menu_shadowYOffset="4dp"
-        fab:menu_showShadow="false">
+        >
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/nfab1"
@@ -81,7 +77,8 @@
             android:src="@drawable/ic_lock"
             fab:fab_label="Codificar"
             fab:fab_size="mini"
-            app:fab_colorNormal="@color/colorPrimary"/>
+            app:fab_colorNormal="@color/colorAccent"
+            />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/nfab2"
@@ -90,7 +87,7 @@
             android:src="@drawable/ic_unlock"
             fab:fab_label="Decodificar"
             fab:fab_size="mini"
-            app:fab_colorNormal="@color/colorPrimary"/>
+            app:fab_colorNormal="@color/colorAccent"/>
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/nfab3"
@@ -99,7 +96,7 @@
             android:src="@drawable/ic_new"
             fab:fab_label="Limpar"
             fab:fab_size="mini"
-            app:fab_colorNormal="@color/colorPrimary"/>
+            app:fab_colorNormal="@color/colorAccent"/>
     </com.github.clans.fab.FloatingActionMenu>
 
 

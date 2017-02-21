@@ -2,10 +2,13 @@ package com.example.felipexlr.felipecrypt;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,32 +19,32 @@ import android.widget.Toast;
 
 import com.example.felipexlr.felipecrypt.core.EncryptEngine;
 import com.github.clans.fab.FloatingActionButton;
-import com.github.clans.fab.FloatingActionMenu;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private EncryptEngine encode;
-    private FloatingActionMenu menu;
     private EditText edtKey;
     private EditText edtTexto;
     private FloatingActionButton floatingActionButton1, floatingActionButton2, floatingActionButton3;
     private ProgressBar progressBar;
-
+    private View view;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //this.setTheme(R.style.AppTheme_Light);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        SharedPreferences sharedPref = this.getPreferences(Context.MODE_PRIVATE);
 
-
-        menu = (FloatingActionMenu) findViewById(R.id.menu2);
         edtKey = (EditText) findViewById(R.id.edtKey);
         edtTexto = (EditText) findViewById(R.id.edtMText);
+        view  = edtKey.getRootView();
+
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -70,7 +73,37 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_theme_light) {
+
+            MainActivity.this.setTheme(R.style.AppTheme_Light);
+
+
+            view.setBackgroundColor(ContextCompat.getColor(this,R.color.light_grey));
+
+            edtTexto.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+            edtTexto.setTextColor(ContextCompat.getColor(this, R.color.black));
+            edtTexto.setHintTextColor(ContextCompat.getColor(this, R.color.grey));
+
+            edtKey.setBackgroundColor(ContextCompat.getColor(this, R.color.white));
+            edtKey.setTextColor(ContextCompat.getColor(this, R.color.black));
+            edtKey.setHintTextColor(ContextCompat.getColor(this, R.color.grey));
+
+            return true;
+        }
+
+        if(id==R.id.action_theme_dark){
+
+            this.setTheme(R.style.AppTheme_Dark);
+
+            view.setBackgroundColor(ContextCompat.getColor(this,R.color.black));
+            edtTexto.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+            edtTexto.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            edtTexto.setHintTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+
+            edtKey.setBackgroundColor(ContextCompat.getColor(this, R.color.black));
+            edtKey.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            edtKey.setHintTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+
             return true;
         }
 
