@@ -1,5 +1,7 @@
 package com.example.felipexlr.felipecrypt.core;
 
+import android.util.Log;
+
 public class EncryptEngine {
 
 	/**
@@ -10,24 +12,27 @@ public class EncryptEngine {
 	 * @return
 	 *
 	 */
-	
+
 	private final int UNICODE_LIMIT = 65533;	//Limite da tabela unicode
 	private SHACoding sha = new SHACoding();
-	
+
 	public String encode(String text,int key){
 
 		String result = "";
 		int tempKey;
 
 		for(int i = 0;i<text.length();i++){
+            //Log.d("teste","char: "+text.charAt(i)+" - pos: "+i);
+            if(i==0){
+                tempKey = text.charAt(i)+key/3;
+            }
+            else if(i%2==0){
+                tempKey = text.charAt(i)+key*i/2;
+            }
+            else{
+                tempKey = text.charAt(i)+key*i;
+            }
 
-			if(i%2==0){
-				tempKey = text.charAt(i)+key*i;
-			}
-			else{
-				tempKey = text.charAt(i)+key;
-			}
-			
 			//cria o loop dos caracteres quando a tempKey ultrapassa o limite do unicode
 			if(tempKey>UNICODE_LIMIT){
 				do{
@@ -35,18 +40,18 @@ public class EncryptEngine {
 				}
 				while(tempKey>UNICODE_LIMIT);
 			}
-			
+
 			if(tempKey<0){
 				do{
-				tempKey=tempKey+UNICODE_LIMIT;
+					tempKey=tempKey+UNICODE_LIMIT;
 				}
 				while(tempKey<0);
 			}
-
+            Log.d("teste","char: "+text.charAt(i)+" - pos: "+i+" - code: "+tempKey);
 			result += (char)tempKey;
 			//System.out.println(tempKey);
 		}
-		
+
 		return result;
 
 	}
@@ -64,30 +69,35 @@ public class EncryptEngine {
 		String result = "";
 		int tempKey;
 		for(int i = 0;i<text.length();i++){
-			if(i%2==0){
+            //Log.d("teste","char: "+text.charAt(i)+" - pos: "+i);
+            if(i==0){
+                tempKey = text.charAt(i)-key/3;
+            }
+            else if(i%2==0){
+				tempKey = text.charAt(i)-key*i/2;
+			}
+
+			else{
 				tempKey = text.charAt(i)-key*i;
 			}
-			else{
-				tempKey = text.charAt(i)-key;
-			}
-			
-			
+
+
 			if(tempKey<0){
 				do{
-				tempKey=tempKey+UNICODE_LIMIT;
+					tempKey=tempKey+UNICODE_LIMIT;
 				}
 				while(tempKey<0);
 			}
-			
+
 			if(tempKey>UNICODE_LIMIT){
 				do{
 					tempKey=tempKey-UNICODE_LIMIT;
 				}
 				while(tempKey>UNICODE_LIMIT);
 			}
-			
+            Log.d("teste","char: "+text.charAt(i)+" - pos: "+i+" - code: "+tempKey);
 			result += (char)tempKey;
-			
+
 
 
 		}
@@ -95,35 +105,35 @@ public class EncryptEngine {
 		return result;
 
 	}
-	
-	
+
+
 	public int keyEncrypt(String password){
 		int ret=0;
 		int sum = 0;
 		for(int i =0;i<password.length();i++){
 			sum += password.charAt(i);
-					
+
 		}
 		ret = (int)(Math.log10(sum*sum)*sum/10+sum);
-		
+
 		if(ret<0){
 			ret *=-1;
 		}
-		
+
 		return  ret;
 	}
-	
+
 	public int keyEncrypt2(String password){
 		int ret=0;
 		int aux = sha.intSHA(password, 512);
 		//System.out.println(aux);
-		
+
 		ret = aux;
 		//System.out.println(ret);
 		return  ret;
 	}
-	
-	
-	
-	
+
+
+
+
 }
